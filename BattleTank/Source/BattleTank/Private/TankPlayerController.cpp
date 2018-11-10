@@ -9,6 +9,13 @@ ATank* ATankPlayerController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
+// Called every frame
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
