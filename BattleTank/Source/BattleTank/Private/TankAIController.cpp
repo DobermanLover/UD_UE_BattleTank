@@ -10,6 +10,28 @@ ATank* ATankAIController::GetAIControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	/*if (GetPlayerTank())
+	{
+		//TODO Move towards player
+
+		//Aim towards player
+		GetPlayerTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		//Fire if ready
+	}*/
+	if (GetAIControlledTank() && GetPlayerTank())
+	{
+		//TODO Move towards player
+
+		//Aim towards player
+		GetAIControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		//Fire if ready
+	}
+
+}
+
 ATank * ATankAIController::GetPlayerTank() const
 {
 	auto PlayerPawn= GetWorld()->GetFirstPlayerController()->GetPawn();
@@ -52,6 +74,8 @@ void ATankAIController::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("AIPlayerController found a tank on: %s"), *(PlayerTank->GetName()));
 	}
 }
+
+
 
 
 
