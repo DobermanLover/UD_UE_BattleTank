@@ -2,6 +2,7 @@
 
 #include "TankAIController.h"
 #include "BattleTank.h"
+#include "Tank.h"
 //#include "TankPlayerController.h"
 
 
