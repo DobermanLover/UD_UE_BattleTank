@@ -6,74 +6,31 @@
 //#include "TankPlayerController.h"
 
 
-ATank* ATankAIController::GetAIControlledTank() const
+/*ATank* ATankAIController::GetAIControlledTank() const
 {
-	return Cast<ATank>(GetPawn());
-}
+	
+}*/
 
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	/*if (GetPlayerTank())
-	{
-		//TODO Move towards player
 
-		//Aim towards player
-		GetPlayerTank()->AimAt(GetPlayerTank()->GetActorLocation());
-		//Fire if ready
-	}*/
-	if (GetAIControlledTank() && GetPlayerTank())
-	{
-		//TODO Move towards player
-
-		//Aim towards player
-		GetAIControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
-		//Fire if ready
-	}
-
-}
-
-ATank * ATankAIController::GetPlayerTank() const
-{
-	auto PlayerPawn= GetWorld()->GetFirstPlayerController()->GetPawn();
+	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	auto ControlledTank = Cast<ATank>(GetPawn());
+	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
 	//return nullptr;
-	if (PlayerPawn == nullptr)
+	if (PlayerTank)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("AIPlayerController is not finding player controlled tank"));
-		return nullptr;
+		ControlledTank->AimAt(PlayerTank->GetActorLocation());
+		ControlledTank->Fire(); // TODO don't fire every frame
 	}
-	else
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("AIPlayerController found on: %s"), *(PlayerPawn->GetName()));
-		return Cast<ATank>(PlayerPawn);
-	}
+
 }
 
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	auto AIControlledTank = GetAIControlledTank();
-	auto PlayerTank = GetPlayerTank();
-
-	///adding code to log problems with possessing a tank
-	if (AIControlledTank == nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AIPlayerController possessing a tank"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AIPlayerController found on: %s"), *(AIControlledTank->GetName()));
-	}
-
-	if (PlayerTank == nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AIPlayerController can't find a tank"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AIPlayerController found a tank on: %s"), *(PlayerTank->GetName()));
-	}
+	
 }
 
 
