@@ -24,6 +24,6 @@ private:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
+	float AcceptanceRadius = 3000.0;
 	
 };

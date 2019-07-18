@@ -32,6 +32,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
+	//TODO check best method
+	/** path following: request new velocity */
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
+
 private:
 	UTankTrack* LeftTrack = nullptr;
 	UTankTrack* RightTrack = nullptr;	
