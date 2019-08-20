@@ -38,15 +38,20 @@ public:
 
 public:	
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	//void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-		EFiringState FiringState = EFiringState::Aiming;
+		EFiringState FiringState = EFiringState::Locked;
 
 private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
+
+	//TODO remove once firing is moved to aiming component
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 4000; 
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;	
