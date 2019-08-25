@@ -13,8 +13,7 @@ ATank::ATank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-	auto OurTankName = GetName();
-	//UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: C++ Constructor"), *OurTankName);
+	
 
 }
 
@@ -37,23 +36,5 @@ void ATank::BeginPlay()
 	//UE_LOG(LogTemp, Warning, TEXT("%s aiming at: %s"), *OurTankName,*HitLocation.ToString());
 }*/
 
-void ATank::Fire()
-{
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
-	if (Barrel && isReloaded)
-	{	
-
-	//Spawn a projectile at the socket location for the barrel
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-		ProjectileBlueprint,
-		Barrel->GetSocketLocation(FName("Projectile")),
-		Barrel->GetSocketRotation(FName("Projectile"))
-		);
-
-	Projectile->LaunchProjectile(LaunchSpeed);
-	LastFireTime = FPlatformTime::Seconds();
-
-	}
-}
 
