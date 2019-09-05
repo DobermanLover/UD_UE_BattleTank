@@ -40,6 +40,8 @@ public:
 	//void AimAt(FVector HitLocation, float LaunchSpeed);
 	void AimAt(FVector HitLocation);
 
+	
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 		EFiringState FiringState = EFiringState::Reloading;
@@ -62,9 +64,13 @@ private:
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
-	UTankTurret* Turret = nullptr;	
+	UTankTurret* Turret = nullptr;
 
-	double LastFireTime = 3;
+	bool IsBarrelMoving();
+
+	double LastFireTime = 0;
+
+	FVector AimDirection;
 
 	void MoveBarrelTowards(FVector AimDirection);
 	

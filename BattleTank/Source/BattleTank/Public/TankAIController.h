@@ -8,7 +8,7 @@
 #include "TankAIController.generated.h"
 
 //Forward declarations
-class ATank;
+//class ATank;
 
 /**
  * 
