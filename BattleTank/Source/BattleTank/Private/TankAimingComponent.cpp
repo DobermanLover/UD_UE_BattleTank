@@ -29,8 +29,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickTy
 	else
 	{
 		FiringState = EFiringState::Locked;
-	}
-	//TODO Handle aiming and locked states
+	}	
 }
 
 void UTankAimingComponent::BeginPlay()
